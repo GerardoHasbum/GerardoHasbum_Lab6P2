@@ -54,7 +54,17 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jb_ConfirmarTransferencia = new javax.swing.JButton();
+        jd_CrearJugador = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jtf_NombreJugador = new javax.swing.JTextField();
+        js_EdadJugador = new javax.swing.JSpinner();
+        jcb_PosicionJugador = new javax.swing.JComboBox<>();
+        jb_JugadorCreado = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         moshimoshironaldodesu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -203,10 +213,10 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Transferencia");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("----->");
+        jb_ConfirmarTransferencia.setBackground(new java.awt.Color(255, 255, 255));
+        jb_ConfirmarTransferencia.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jb_ConfirmarTransferencia.setForeground(new java.awt.Color(0, 0, 0));
+        jb_ConfirmarTransferencia.setText("----->");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -218,7 +228,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                        .addComponent(jb_ConfirmarTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +257,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jb_ConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -260,6 +270,99 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jd_TransferenciaLayout.setVerticalGroup(
             jd_TransferenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 204));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Crear Jugador");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel11.setText("Nombre");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel12.setText("Edad");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel13.setText("Posicion");
+
+        jtf_NombreJugador.setBackground(new java.awt.Color(255, 255, 255));
+        jtf_NombreJugador.setForeground(new java.awt.Color(0, 0, 0));
+
+        js_EdadJugador.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+
+        jcb_PosicionJugador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jb_JugadorCreado.setBackground(new java.awt.Color(255, 153, 153));
+        jb_JugadorCreado.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jb_JugadorCreado.setForeground(new java.awt.Color(0, 0, 0));
+        jb_JugadorCreado.setText("Agregar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtf_NombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel13)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcb_PosicionJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addGap(108, 108, 108)
+                                    .addComponent(js_EdadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(jb_JugadorCreado, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(265, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel10)
+                .addGap(103, 103, 103)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jtf_NombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(js_EdadJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jcb_PosicionJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109)
+                .addComponent(jb_JugadorCreado, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_CrearJugadorLayout = new javax.swing.GroupLayout(jd_CrearJugador.getContentPane());
+        jd_CrearJugador.getContentPane().setLayout(jd_CrearJugadorLayout);
+        jd_CrearJugadorLayout.setHorizontalGroup(
+            jd_CrearJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_CrearJugadorLayout.setVerticalGroup(
+            jd_CrearJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -412,8 +515,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -426,13 +532,18 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jb_ConfirmarTransferencia;
     private javax.swing.JButton jb_CrearEquipo;
     private javax.swing.JButton jb_CrearJugador;
     private javax.swing.JButton jb_EquipoCreado;
+    private javax.swing.JButton jb_JugadorCreado;
     private javax.swing.JButton jb_Transferencia;
+    private javax.swing.JComboBox<String> jcb_PosicionJugador;
     private javax.swing.JDialog jd_CrearEquipo;
+    private javax.swing.JDialog jd_CrearJugador;
     private javax.swing.JDialog jd_Transferencia;
     private javax.swing.JList<String> jl_Jugadores;
     private javax.swing.JMenu jm_Ayuda;
@@ -440,10 +551,12 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_CrearEquipo;
     private javax.swing.JMenuItem jmi_CrearJugador;
     private javax.swing.JMenuItem jmi_Transferencia;
+    private javax.swing.JSpinner js_EdadJugador;
     private javax.swing.JTree jt_Equipos;
     private javax.swing.JTextField jtf_CiudadEquipo;
     private javax.swing.JTextField jtf_EstadioEquipo;
     private javax.swing.JTextField jtf_NombreEquipo;
+    private javax.swing.JTextField jtf_NombreJugador;
     private javax.swing.JTextField jtf_PaisEquipo;
     private javax.swing.JLabel moshimoshironaldodesu;
     // End of variables declaration//GEN-END:variables
