@@ -49,8 +49,6 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_EquipoCreado = new javax.swing.JButton();
         jd_Transferencia = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jl_Jugadores = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jt_Equipos = new javax.swing.JTree();
         jLabel7 = new javax.swing.JLabel();
@@ -58,6 +56,8 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jb_ConfirmarTransferencia = new javax.swing.JButton();
         jb_TransSalir = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jl_Jugadores = new javax.swing.JList<>();
         jd_CrearJugador = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -194,9 +194,6 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
 
-        jl_Jugadores.setBackground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jl_Jugadores);
-
         jt_Equipos.setBackground(new java.awt.Color(0, 0, 0));
         jt_Equipos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jt_Equipos.setForeground(new java.awt.Color(0, 0, 0));
@@ -221,12 +218,19 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_ConfirmarTransferencia.setForeground(new java.awt.Color(0, 0, 0));
         jb_ConfirmarTransferencia.setText("----->");
 
+        jb_TransSalir.setBackground(new java.awt.Color(204, 0, 0));
+        jb_TransSalir.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jb_TransSalir.setText("Salir");
         jb_TransSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_TransSalirMouseClicked(evt);
             }
         });
+
+        jl_Jugadores.setBackground(new java.awt.Color(0, 0, 0));
+        jl_Jugadores.setForeground(new java.awt.Color(255, 255, 255));
+        jl_Jugadores.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_Jugadores);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -236,10 +240,12 @@ public class LeagueFantasy extends javax.swing.JFrame {
                 .addGap(122, 122, 122)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jb_ConfirmarTransferencia, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                    .addComponent(jLabel8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -268,13 +274,13 @@ public class LeagueFantasy extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jb_ConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jb_ConfirmarTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -598,7 +604,8 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private void jb_TransSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_TransSalirMouseClicked
         // TODO add your handling code here:
         
-        
+        jd_Transferencia.setVisible(false);
+        this.setVisible(true);
         
     }//GEN-LAST:event_jb_TransSalirMouseClicked
 
@@ -673,8 +680,8 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_ConfirmarTransferencia;
     private javax.swing.JButton jb_CrearEquipo;
     private javax.swing.JButton jb_CrearJugador;
