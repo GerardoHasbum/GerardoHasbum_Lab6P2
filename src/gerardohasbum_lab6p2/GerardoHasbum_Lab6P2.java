@@ -15,6 +15,11 @@ public class GerardoHasbum_Lab6P2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        LeagueFantasy m = new LeagueFantasy();
+        
+        m.setVisible(true);
+        
     }
     
 }
