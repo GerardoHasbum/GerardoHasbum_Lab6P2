@@ -208,6 +208,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_EquipoCreadoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_EquipoCreadoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -326,7 +327,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                      <TreeModel code=""/>
+                      <TreeModel code="Equipos"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -378,6 +379,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="-----&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_ConfirmarTransferenciaMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jb_TransSalir">
               <Properties>
@@ -603,6 +607,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_JugadorCreadoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_JugadorCreadoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

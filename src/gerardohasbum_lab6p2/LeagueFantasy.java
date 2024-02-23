@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import org.w3c.dom.css.RGBColor;
 
 /**
@@ -23,7 +26,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
         initComponents();
         /*Color c = new Color(0,0,0,1);
         jb_CrearEquipo.setBackground(c);*/
-        
+
     }
 
     /**
@@ -126,6 +129,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
                 jb_EquipoCreadoMouseClicked(evt);
             }
         });
+        jb_EquipoCreado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_EquipoCreadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,7 +205,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jt_Equipos.setBackground(new java.awt.Color(0, 0, 0));
         jt_Equipos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jt_Equipos.setForeground(new java.awt.Color(0, 0, 0));
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jt_Equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jt_Equipos);
 
@@ -217,6 +225,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_ConfirmarTransferencia.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jb_ConfirmarTransferencia.setForeground(new java.awt.Color(0, 0, 0));
         jb_ConfirmarTransferencia.setText("----->");
+        jb_ConfirmarTransferencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_ConfirmarTransferenciaMouseClicked(evt);
+            }
+        });
 
         jb_TransSalir.setBackground(new java.awt.Color(204, 0, 0));
         jb_TransSalir.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
@@ -327,6 +340,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_JugadorCreado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_JugadorCreadoMouseClicked(evt);
+            }
+        });
+        jb_JugadorCreado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_JugadorCreadoActionPerformed(evt);
             }
         });
 
@@ -526,18 +544,45 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
     private void jb_EquipoCreadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_EquipoCreadoMouseClicked
         // TODO add your handling code here:
+        
+        if (jtf_NombreEquipo.getText().equals("") || jtf_PaisEquipo.getText().equals("") || jtf_CiudadEquipo.getText().equals("") || jtf_EstadioEquipo.getText().equals("")) {
+            JOptionPane.showMessageDialog(jd_CrearEquipo, "Los campos no pueden quedar vacios");
+        } else {
 
         Equipo xd = new Equipo(jtf_PaisEquipo.getText(), jtf_NombreEquipo.getText(), jtf_CiudadEquipo.getText(), jtf_EstadioEquipo.getText());
         
+        DefaultTreeModel m = (DefaultTreeModel) jt_Equipos.getModel();
+        
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+        
+        DefaultMutableTreeNode nodo_equipo = new DefaultMutableTreeNode(xd);
+        
+        DefaultMutableTreeNode pais = new DefaultMutableTreeNode(xd.getPais());
+        
+        pais.add(nodo_equipo);
+        raiz.add(pais);
+        m.reload();
+        jtf_NombreEquipo.setText("");
+        jtf_EstadioEquipo.setText("");
+        jtf_CiudadEquipo.setText("");
+        jtf_PaisEquipo.setText("");
+        
+        jd_CrearEquipo.setVisible(false);
+        this.setVisible(true);
+        
+        }
 
     }//GEN-LAST:event_jb_EquipoCreadoMouseClicked
 
     private void jb_JugadorCreadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_JugadorCreadoMouseClicked
         // TODO add your handling code here:
-        
-        AgregarLista();
-        jd_CrearJugador.setVisible(false);
-        this.setVisible(true);
+        if (!(jtf_NombreJugador.getText().equals(""))) {
+            AgregarLista();
+            jd_CrearJugador.setVisible(false);
+            this.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(jd_CrearJugador, "El nombre no puede quedar en vacio");
+        }
 
     }//GEN-LAST:event_jb_JugadorCreadoMouseClicked
 
@@ -585,16 +630,16 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
     private void jmi_CrearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_CrearJugadorActionPerformed
         // TODO add your handling code here:
-        
+
         this.setVisible(false);
         jd_CrearJugador.pack();
         jd_CrearJugador.setVisible(true);
-        
+
     }//GEN-LAST:event_jmi_CrearJugadorActionPerformed
 
     private void jmi_TransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_TransferenciaActionPerformed
         // TODO add your handling code here:
-        
+
         this.setVisible(false);
         jd_Transferencia.pack();
         jd_Transferencia.setVisible(true);
@@ -603,29 +648,44 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
     private void jb_TransSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_TransSalirMouseClicked
         // TODO add your handling code here:
-        
+
         jd_Transferencia.setVisible(false);
         this.setVisible(true);
-        
+
     }//GEN-LAST:event_jb_TransSalirMouseClicked
 
-    
-    public void AgregarLista(){
+    private void jb_JugadorCreadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_JugadorCreadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_JugadorCreadoActionPerformed
+
+    private void jb_EquipoCreadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_EquipoCreadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_EquipoCreadoActionPerformed
+
+    private void jb_ConfirmarTransferenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ConfirmarTransferenciaMouseClicked
+        // TODO add your handling code here:
         
-        DefaultListModel m = new DefaultListModel();        
+        //AHSJKDHASJKLDHASJKLDHAJSKLDHASJKLDHALSKJD ME FALTA ALGO YA VOY
+        
+    }//GEN-LAST:event_jb_ConfirmarTransferenciaMouseClicked
+
+    public void AgregarLista() {
+
+        DefaultListModel m = new DefaultListModel();
         m = (DefaultListModel) jl_Jugadores.getModel();
-        
-        m.addElement(new Jugador(jtf_NombreJugador.getText(),(String) jcb_PosicionJugador.getSelectedItem(), (Integer)js_EdadJugador.getValue()));
-        
+
+        m.addElement(new Jugador(jtf_NombreJugador.getText(), (String) jcb_PosicionJugador.getSelectedItem(), (Integer) js_EdadJugador.getValue()));
+
         jl_Jugadores.setModel(m);
-        
+
         jtf_NombreJugador.setText("");
         js_EdadJugador.setValue(15);
         jcb_PosicionJugador.setSelectedIndex(0);
-        
+
     }
     
     
+
     /**
      * @param args the command line arguments
      */
