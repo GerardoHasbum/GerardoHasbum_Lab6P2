@@ -5,6 +5,9 @@
 package gerardohasbum_lab6p2;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import org.w3c.dom.css.RGBColor;
 
 /**
@@ -20,7 +23,6 @@ public class LeagueFantasy extends javax.swing.JFrame {
         initComponents();
         /*Color c = new Color(0,0,0,1);
         jb_CrearEquipo.setBackground(c);*/
-        
         
     }
 
@@ -55,6 +57,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jb_ConfirmarTransferencia = new javax.swing.JButton();
+        jb_TransSalir = new javax.swing.JButton();
         jd_CrearJugador = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -218,6 +221,13 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_ConfirmarTransferencia.setForeground(new java.awt.Color(0, 0, 0));
         jb_ConfirmarTransferencia.setText("----->");
 
+        jb_TransSalir.setText("Salir");
+        jb_TransSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_TransSalirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -238,13 +248,20 @@ public class LeagueFantasy extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(304, 304, 304)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jb_TransSalir)
+                .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel9)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_TransSalir)))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -301,6 +318,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jb_JugadorCreado.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jb_JugadorCreado.setForeground(new java.awt.Color(0, 0, 0));
         jb_JugadorCreado.setText("Agregar");
+        jb_JugadorCreado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_JugadorCreadoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -383,12 +405,27 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
         jb_CrearEquipo.setForeground(new java.awt.Color(0, 0, 0));
         jb_CrearEquipo.setText("Crear Equipo");
+        jb_CrearEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_CrearEquipoMouseClicked(evt);
+            }
+        });
 
         jb_CrearJugador.setForeground(new java.awt.Color(0, 0, 0));
         jb_CrearJugador.setText("Crear Jugador");
+        jb_CrearJugador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_CrearJugadorMouseClicked(evt);
+            }
+        });
 
         jb_Transferencia.setForeground(new java.awt.Color(0, 0, 0));
         jb_Transferencia.setText("Transeferencia");
+        jb_Transferencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_TransferenciaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -428,18 +465,36 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
         jm_Opciones.setText("Opciones");
 
-        jmi_CrearEquipo.setText("Crear Equipo          Ctrl+E");
+        jmi_CrearEquipo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_CrearEquipo.setText("Crear Equipo");
         jmi_CrearEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_CrearEquipoActionPerformed(evt);
             }
         });
+        jmi_CrearEquipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jmi_CrearEquipoKeyPressed(evt);
+            }
+        });
         jm_Opciones.add(jmi_CrearEquipo);
 
-        jmi_CrearJugador.setText("Crear Jugador          Ctrl+J");
+        jmi_CrearJugador.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_CrearJugador.setText("Crear Jugador");
+        jmi_CrearJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_CrearJugadorActionPerformed(evt);
+            }
+        });
         jm_Opciones.add(jmi_CrearJugador);
 
-        jmi_Transferencia.setText("Transferencia          Ctrl+T");
+        jmi_Transferencia.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_Transferencia.setText("Transferencia");
+        jmi_Transferencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_TransferenciaActionPerformed(evt);
+            }
+        });
         jm_Opciones.add(jmi_Transferencia);
 
         jMenuBar1.add(jm_Opciones);
@@ -463,22 +518,107 @@ public class LeagueFantasy extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmi_CrearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_CrearEquipoActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-    }//GEN-LAST:event_jmi_CrearEquipoActionPerformed
-
     private void jb_EquipoCreadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_EquipoCreadoMouseClicked
         // TODO add your handling code here:
-        
+
         Equipo xd = new Equipo(jtf_PaisEquipo.getText(), jtf_NombreEquipo.getText(), jtf_CiudadEquipo.getText(), jtf_EstadioEquipo.getText());
         
-        
-        
+
     }//GEN-LAST:event_jb_EquipoCreadoMouseClicked
 
+    private void jb_JugadorCreadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_JugadorCreadoMouseClicked
+        // TODO add your handling code here:
+        
+        AgregarLista();
+        jd_CrearJugador.setVisible(false);
+        this.setVisible(true);
+
+    }//GEN-LAST:event_jb_JugadorCreadoMouseClicked
+
+    private void jb_CrearEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CrearEquipoMouseClicked
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+        jd_CrearEquipo.pack();
+        jd_CrearEquipo.setVisible(true);
+
+    }//GEN-LAST:event_jb_CrearEquipoMouseClicked
+
+    private void jb_CrearJugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_CrearJugadorMouseClicked
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+        jd_CrearJugador.pack();
+        jd_CrearJugador.setVisible(true);
+
+    }//GEN-LAST:event_jb_CrearJugadorMouseClicked
+
+    private void jb_TransferenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_TransferenciaMouseClicked
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+        jd_Transferencia.pack();
+        jd_Transferencia.setVisible(true);
+
+    }//GEN-LAST:event_jb_TransferenciaMouseClicked
+
+    private void jmi_CrearEquipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmi_CrearEquipoKeyPressed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jmi_CrearEquipoKeyPressed
+
+    private void jmi_CrearEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_CrearEquipoActionPerformed
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+        jd_CrearEquipo.pack();
+        jd_CrearEquipo.setVisible(true);
+
+    }//GEN-LAST:event_jmi_CrearEquipoActionPerformed
+
+    private void jmi_CrearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_CrearJugadorActionPerformed
+        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        jd_CrearJugador.pack();
+        jd_CrearJugador.setVisible(true);
+        
+    }//GEN-LAST:event_jmi_CrearJugadorActionPerformed
+
+    private void jmi_TransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_TransferenciaActionPerformed
+        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        jd_Transferencia.pack();
+        jd_Transferencia.setVisible(true);
+
+    }//GEN-LAST:event_jmi_TransferenciaActionPerformed
+
+    private void jb_TransSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_TransSalirMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jb_TransSalirMouseClicked
+
+    
+    public void AgregarLista(){
+        
+        DefaultListModel m = new DefaultListModel();        
+        m = (DefaultListModel) jl_Jugadores.getModel();
+        
+        m.addElement(new Jugador(jtf_NombreJugador.getText(),(String) jcb_PosicionJugador.getSelectedItem(), (Integer)js_EdadJugador.getValue()));
+        
+        jl_Jugadores.setModel(m);
+        
+        jtf_NombreJugador.setText("");
+        js_EdadJugador.setValue(15);
+        jcb_PosicionJugador.setSelectedIndex(0);
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -540,6 +680,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JButton jb_CrearJugador;
     private javax.swing.JButton jb_EquipoCreado;
     private javax.swing.JButton jb_JugadorCreado;
+    private javax.swing.JButton jb_TransSalir;
     private javax.swing.JButton jb_Transferencia;
     private javax.swing.JComboBox<String> jcb_PosicionJugador;
     private javax.swing.JDialog jd_CrearEquipo;

@@ -48,7 +48,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "\nNombre: " + nombre + "\nPosicion: " + posicion + "\nEdad: " + edad + "\n";
+        return nombre;
     }
 
 }
