@@ -71,6 +71,9 @@ public class LeagueFantasy extends javax.swing.JFrame {
         js_EdadJugador = new javax.swing.JSpinner();
         jcb_PosicionJugador = new javax.swing.JComboBox<>();
         jb_JugadorCreado = new javax.swing.JButton();
+        pum_Lista = new javax.swing.JPopupMenu();
+        jmi_Modificar = new javax.swing.JMenuItem();
+        jmi_Eliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         moshimoshironaldodesu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -207,6 +210,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jt_Equipos.setForeground(new java.awt.Color(0, 0, 0));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jt_Equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_Equipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_EquiposMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jt_Equipos);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 3, 18)); // NOI18N
@@ -243,6 +251,11 @@ public class LeagueFantasy extends javax.swing.JFrame {
         jl_Jugadores.setBackground(new java.awt.Color(0, 0, 0));
         jl_Jugadores.setForeground(new java.awt.Color(255, 255, 255));
         jl_Jugadores.setModel(new DefaultListModel());
+        jl_Jugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_JugadoresMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jl_Jugadores);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -410,6 +423,23 @@ public class LeagueFantasy extends javax.swing.JFrame {
             jd_CrearJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pum_Lista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pum_ListaMouseClicked(evt);
+            }
+        });
+
+        jmi_Modificar.setText("Modificar");
+        jmi_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ModificarActionPerformed(evt);
+            }
+        });
+        pum_Lista.add(jmi_Modificar);
+
+        jmi_Eliminar.setText("Eliminar");
+        pum_Lista.add(jmi_Eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
@@ -697,47 +727,95 @@ public class LeagueFantasy extends javax.swing.JFrame {
         nombre = ((Jugador) modeloLISTA.get(jl_Jugadores.getSelectedIndex())).getNombre();
 
         edad = ((Jugador) modeloLISTA.get(jl_Jugadores.getSelectedIndex())).getEdad();
-        
-        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jt_Equipos.getSelectionPath().getLastPathComponent();
-        
 
-        int cent = -1;
-        for (int i = 0; i < selectedNode.getChildCount(); i++) {
+        if (jt_Equipos.getSelectionPath().getLastPathComponent() != null && jl_Jugadores.getSelectedIndex() >= 0) {
 
-            if (selectedNode.getChildAt(i).toString().equals(posicion)) {
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) jt_Equipos.getSelectionPath().getLastPathComponent();
 
-                    DefaultMutableTreeNode temp = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
+            if (selectedNode.getUserObject() instanceof Equipo) {
 
-                    ((DefaultMutableTreeNode) selectedNode.getChildAt(i)).add(temp);
-                    cent = 1;
+                int cent = -1;
+                for (int i = 0; i < selectedNode.getChildCount(); i++) {
+
+                    if (selectedNode.getChildAt(i).toString().equals(posicion)) {
+
+                        DefaultMutableTreeNode temp = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
+
+                        ((DefaultMutableTreeNode) selectedNode.getChildAt(i)).add(temp);
+                        cent = 1;
+                    }
+
                 }
 
-        }
+                if (cent == -1) {
 
-        if (cent == -1) {
+                    DefaultMutableTreeNode pos = new DefaultMutableTreeNode(posicion);
 
-            DefaultMutableTreeNode pos = new DefaultMutableTreeNode(posicion);
+                    DefaultMutableTreeNode juga = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
 
-                DefaultMutableTreeNode juga = new DefaultMutableTreeNode(new Jugador(nombre, posicion, edad));
+                    selectedNode.add(pos);
+                    pos.add(juga);
 
-                selectedNode.add(pos);
-                pos.add(juga);
-            
-        }
-        
-        modeloARBOL.reload();
-        
-        jl_Jugadores.setSelectedIndex(-1);
-        jt_Equipos.setSelectionPath(null);
+                }
 
-        // System.out.println(posicion);
-        if (jt_Equipos.getSelectionPath().getLastPathComponent() != null && jl_Jugadores.getSelectedIndex() >= 0) {
-            //Jugador j = (Jugador)jl_Jugadores.getSelectedValue();
-            //((DefaultMutableTreeNode)jt_Equipos.getSelectionPath().getLastPathComponent()).add(j);
+            } else {
 
+                JOptionPane.showMessageDialog(jd_Transferencia, "El nodo elegido tiene que ser un Equipo valido");
+
+            }
+
+            modeloARBOL.reload();
+
+            jl_Jugadores.setSelectedIndex(-1);
+            jt_Equipos.setSelectionPath(null);
         }
 
     }//GEN-LAST:event_jb_ConfirmarTransferenciaMouseClicked
+
+    private void jmi_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ModificarActionPerformed
+        // TODO add your handling code here:
+
+        DefaultListModel l = (DefaultListModel) jl_Jugadores.getModel();
+
+        ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setNombre(JOptionPane.showInputDialog(jd_Transferencia, "Ingrese el nuevo nombre: "));
+        String nom = (((Jugador) l.get(jl_Jugadores.getSelectedIndex())).getNombre());
+        while (nom.contains("1") || nom.contains("2") || nom.contains("3") || nom.contains("4") || nom.contains("5") || nom.contains("6") || nom.contains("7") || nom.contains("8") || nom.contains("9") || nom.contains("0")) {
+
+            JOptionPane.showMessageDialog(jd_Transferencia, "El nombre del jugador no puede contener numeros");
+            ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setNombre(JOptionPane.showInputDialog(jd_Transferencia, "Ingrese el nuevo nombre: "));
+
+        }
+
+        ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setEdad(Integer.parseInt(JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la edad nueva: ")));
+
+    }//GEN-LAST:event_jmi_ModificarActionPerformed
+
+    private void pum_ListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pum_ListaMouseClicked
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_pum_ListaMouseClicked
+
+    private void jt_EquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_EquiposMouseClicked
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jt_EquiposMouseClicked
+
+    private void jl_JugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_JugadoresMouseClicked
+        // TODO add your handling code here:
+
+        if (evt.getButton() == 3) {
+
+            if (jl_Jugadores.getSelectedIndex() >= 0) {
+
+                pum_Lista.show(jl_Jugadores, evt.getX(), evt.getY());
+
+            }
+
+        }
+
+    }//GEN-LAST:event_jl_JugadoresMouseClicked
 
     public void AgregarLista() {
 
@@ -826,6 +904,8 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JMenu jm_Opciones;
     private javax.swing.JMenuItem jmi_CrearEquipo;
     private javax.swing.JMenuItem jmi_CrearJugador;
+    private javax.swing.JMenuItem jmi_Eliminar;
+    private javax.swing.JMenuItem jmi_Modificar;
     private javax.swing.JMenuItem jmi_Transferencia;
     private javax.swing.JSpinner js_EdadJugador;
     private javax.swing.JTree jt_Equipos;
@@ -835,5 +915,6 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_NombreJugador;
     private javax.swing.JTextField jtf_PaisEquipo;
     private javax.swing.JLabel moshimoshironaldodesu;
+    private javax.swing.JPopupMenu pum_Lista;
     // End of variables declaration//GEN-END:variables
 }
