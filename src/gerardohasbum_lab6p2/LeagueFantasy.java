@@ -74,6 +74,8 @@ public class LeagueFantasy extends javax.swing.JFrame {
         pum_Lista = new javax.swing.JPopupMenu();
         jmi_Modificar = new javax.swing.JMenuItem();
         jmi_Eliminar = new javax.swing.JMenuItem();
+        pum_Tree = new javax.swing.JPopupMenu();
+        jmi_EliminarT = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         moshimoshironaldodesu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -439,7 +441,26 @@ public class LeagueFantasy extends javax.swing.JFrame {
         pum_Lista.add(jmi_Modificar);
 
         jmi_Eliminar.setText("Eliminar");
+        jmi_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_EliminarActionPerformed(evt);
+            }
+        });
         pum_Lista.add(jmi_Eliminar);
+
+        pum_Tree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pum_TreeMouseClicked(evt);
+            }
+        });
+
+        jmi_EliminarT.setText("Eliminar");
+        jmi_EliminarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_EliminarTActionPerformed(evt);
+            }
+        });
+        pum_Tree.add(jmi_EliminarT);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
@@ -783,10 +804,39 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(jd_Transferencia, "El nombre del jugador no puede contener numeros");
             ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setNombre(JOptionPane.showInputDialog(jd_Transferencia, "Ingrese el nuevo nombre: "));
+            nom = (((Jugador) l.get(jl_Jugadores.getSelectedIndex())).getNombre());
+
+        }
+        String edad = JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la nueva edad: ");
+        edad = edad.toLowerCase();
+        while (edad.contains("a") || edad.contains("b") || edad.contains("c") || edad.contains("d") || edad.contains("e") || edad.contains("f") || edad.contains("g") || edad.contains("h") || edad.contains("i") || edad.contains("j") || edad.contains("k") || edad.contains("l") || edad.contains("m") || edad.contains("n") || edad.contains("o") || edad.contains("p") || edad.contains("q") || edad.contains("r") || edad.contains("s") || edad.contains("t") || edad.contains("u") || edad.contains("v") || edad.contains("w") || edad.contains("x") || edad.contains("y") || edad.contains("z")) {
+
+            JOptionPane.showMessageDialog(jd_Transferencia, "La edad no puede tener letras");
+            edad = JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la nueva edad: ");
+            edad = edad.toLowerCase();
 
         }
 
-        ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setEdad(Integer.parseInt(JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la edad nueva: ")));
+        int ed = Integer.parseInt(edad);
+
+        while (ed < 15) {
+            JOptionPane.showMessageDialog(jd_Transferencia, "La edad no puede ser menor a 15");
+            edad = JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la nueva edad: ");
+
+            while (edad.contains("a") || edad.contains("b") || edad.contains("c") || edad.contains("d") || edad.contains("e") || edad.contains("f") || edad.contains("g") || edad.contains("h") || edad.contains("i") || edad.contains("j") || edad.contains("k") || edad.contains("l") || edad.contains("m") || edad.contains("n") || edad.contains("o") || edad.contains("p") || edad.contains("q") || edad.contains("r") || edad.contains("s") || edad.contains("t") || edad.contains("u") || edad.contains("v") || edad.contains("w") || edad.contains("x") || edad.contains("y") || edad.contains("z")) {
+
+                JOptionPane.showMessageDialog(jd_Transferencia, "La edad no puede tener letras");
+                edad = JOptionPane.showInputDialog(jd_Transferencia, "Ingrese la nueva edad: ");
+                edad = edad.toLowerCase();
+
+            }
+
+            ed = Integer.parseInt(edad);
+
+        }
+
+        ((Jugador) l.get(jl_Jugadores.getSelectedIndex())).setEdad(ed);
+
 
     }//GEN-LAST:event_jmi_ModificarActionPerformed
 
@@ -816,6 +866,45 @@ public class LeagueFantasy extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jl_JugadoresMouseClicked
+
+    private void jmi_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EliminarActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultListModel l = (DefaultListModel) jl_Jugadores.getModel();
+        
+        l.remove(jl_Jugadores.getSelectedIndex());
+        
+        jl_Jugadores.setModel(l);
+        
+    }//GEN-LAST:event_jmi_EliminarActionPerformed
+
+    private void jmi_EliminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EliminarTActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTreeModel m = (DefaultTreeModel)jt_Equipos.getModel();
+        
+        DefaultMutableTreeNode nodo_eliminado = ((DefaultMutableTreeNode)(jt_Equipos.getSelectionPath().getLastPathComponent()));
+        
+        m.removeNodeFromParent(nodo_eliminado);
+        
+    }//GEN-LAST:event_jmi_EliminarTActionPerformed
+
+    private void pum_TreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pum_TreeMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+        if (evt.getButton() == 3) {
+            
+            if (jt_Equipos.getSelectionPath() != null) {
+                
+                pum_Tree.show(jt_Equipos, evt.getX(), evt.getY());
+                
+            }
+            
+        }
+        
+    }//GEN-LAST:event_pum_TreeMouseClicked
 
     public void AgregarLista() {
 
@@ -905,6 +994,7 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_CrearEquipo;
     private javax.swing.JMenuItem jmi_CrearJugador;
     private javax.swing.JMenuItem jmi_Eliminar;
+    private javax.swing.JMenuItem jmi_EliminarT;
     private javax.swing.JMenuItem jmi_Modificar;
     private javax.swing.JMenuItem jmi_Transferencia;
     private javax.swing.JSpinner js_EdadJugador;
@@ -916,5 +1006,6 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private javax.swing.JTextField jtf_PaisEquipo;
     private javax.swing.JLabel moshimoshironaldodesu;
     private javax.swing.JPopupMenu pum_Lista;
+    private javax.swing.JPopupMenu pum_Tree;
     // End of variables declaration//GEN-END:variables
 }
