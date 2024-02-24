@@ -849,6 +849,21 @@ public class LeagueFantasy extends javax.swing.JFrame {
     private void jt_EquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_EquiposMouseClicked
         // TODO add your handling code here:
 
+        if (evt.getButton() == 3) {
+
+            if (jt_Equipos.getSelectionPath() != null) {
+
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) jt_Equipos.getSelectionPath().getLastPathComponent();
+
+                if (nodo.getUserObject() instanceof Equipo) {
+
+                    pum_Tree.show(jt_Equipos, evt.getX(), evt.getY());
+
+                }
+
+            }
+
+        }
 
     }//GEN-LAST:event_jt_EquiposMouseClicked
 
@@ -869,41 +884,30 @@ public class LeagueFantasy extends javax.swing.JFrame {
 
     private void jmi_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EliminarActionPerformed
         // TODO add your handling code here:
-        
+
         DefaultListModel l = (DefaultListModel) jl_Jugadores.getModel();
-        
+
         l.remove(jl_Jugadores.getSelectedIndex());
-        
+
         jl_Jugadores.setModel(l);
-        
+
     }//GEN-LAST:event_jmi_EliminarActionPerformed
 
     private void jmi_EliminarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EliminarTActionPerformed
         // TODO add your handling code here:
-        
-        DefaultTreeModel m = (DefaultTreeModel)jt_Equipos.getModel();
-        
-        DefaultMutableTreeNode nodo_eliminado = ((DefaultMutableTreeNode)(jt_Equipos.getSelectionPath().getLastPathComponent()));
-        
+
+        DefaultTreeModel m = (DefaultTreeModel) jt_Equipos.getModel();
+
+        DefaultMutableTreeNode nodo_eliminado = ((DefaultMutableTreeNode) (jt_Equipos.getSelectionPath().getLastPathComponent()));
+
         m.removeNodeFromParent(nodo_eliminado);
-        
+
     }//GEN-LAST:event_jmi_EliminarTActionPerformed
 
     private void pum_TreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pum_TreeMouseClicked
         // TODO add your handling code here:
-        
-        
-        
-        if (evt.getButton() == 3) {
-            
-            if (jt_Equipos.getSelectionPath() != null) {
-                
-                pum_Tree.show(jt_Equipos, evt.getX(), evt.getY());
-                
-            }
-            
-        }
-        
+
+
     }//GEN-LAST:event_pum_TreeMouseClicked
 
     public void AgregarLista() {
